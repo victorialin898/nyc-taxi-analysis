@@ -35,6 +35,7 @@ def roll(data, interval):
 
 def merge_rolling(formatted_data, rolling_data):
     ind = ['date', 'interval_start', 'pickup_zone', 'dropoff_zone']
+    # Casting index to common dtype so join function will work properly
     for i in ind:
         rolling_data[i] = rolling_data[i].astype(int)
         formatted_data[i] = formatted_data[i].astype(int)
@@ -47,4 +48,13 @@ def merge_weather(merged_rolling, weather_filepath):
     weather = pd.read_csv(weather_filepath, index_col=[0,1,2,3])
     joined_weather = weather.join(merged_rolling)
     joined_weather.drop_duplicates(inplace=True)
-    return joined_weather
+    return joined_weather.reset_index()
+
+
+def calculate_deviation(data):
+    data['n_trips_deviation'] = data['n_trips_forecast'] - data['n_trips']
+    data['duration_deviation'] = data['duration_forecast'] - data['avg_duration']
+    data['distance_deviation'] = data['distance_forecast'] - data['avg_distance']
+    data['fare_deviation'] = data['fare_forecast'] - data['avg_fare']
+    data['speed_deviation'] = data['speed_forecast'] - data['avg_speed']
+    return data

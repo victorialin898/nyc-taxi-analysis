@@ -1,19 +1,24 @@
-import math
-import numpy as np
-import pandas as pd
-import utils as util
+from wrapper import Forecast
 
 print('START')
 
 filepath = '../../../../PycharmProjects/taxi_data/5_percentile_forecasts/combined_2015_clean.csv'
 weather = '../../../python/joined_avgweather_2015_copy.csv'
-raw_data = pd.read_csv(filepath)
 
+# Create new instance of forecast with default values for drop_monday, force_gamma, intercept
+fc = Forecast(filepath)
 
-formatted_data = util.merge_day_month(raw_data)
-rolling_data = util.roll(formatted_data, 10)
-merged_rolling = util.merge_rolling(formatted_data, rolling_data)
-merged_weather = util.merge_weather(merged_rolling, weather)
+# Specify certain parameters for this forecast to be used in forecast creation
+fc.set_params(drop_monday=True, interval=10)
 
-print(merged_weather.head())
-# merged_weather.to_csv('weathered.csv', header=True)
+# Create generic forecast, specify path to weather file
+fc.create_generic(weather)
+
+# Get forecasts and coefficients; these forecasts/coefficients will be stored as well
+forecasts = fc.get_forecasts()
+coeffs = fc.get_coefficients()
+print(forecasts.head())
+
+# Get a summary of the forecast
+fc.summary()
+
