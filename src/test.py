@@ -17,8 +17,15 @@ fc.create_generic(weather)
 # Get forecasts and coefficients; these forecasts/coefficients will be stored as well
 forecasts = fc.get_forecasts()
 coeffs = fc.get_coefficients()
-print(forecasts.head())
 
 # Get a summary of the forecast
-fc.summary()
+fc.coefficient_summary()
+
+# Get basic summary statistics
+summary_stats = fc.forecast_summary(by_route=True)
+print summary_stats.head()
+
+# Autocorrelation analysis
+autocorr = fc.autocorrelation_summary()
+print autocorr.head()
 
