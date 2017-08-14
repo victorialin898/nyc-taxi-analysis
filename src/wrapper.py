@@ -1,11 +1,26 @@
-import math
-import numpy as np
+"""A wrapper module containing the Forecast class which generates forecasts and performs analysis."""
+
 import pandas as pd
 import utils as util
 import forecasting as fc
 import analyze as an
 
+
 class Forecast:
+    """A class that encapsulates pre-forecast, forecast, and post-forecast processing.
+
+    Attributes:
+        drop_monday (bool): Indicates whether monday should be dropped when performing regression.
+        force_gamma (bool): Indicates whether gamma, the coefficient of generic forecast, should be forced to 1.
+        intercept (bool): Indicates whether the regression should be performed with intercept.
+        interval (int): The size of the window for the rolling average, or generic forecast.
+
+        raw_data (dataframe): The raw data imported from a raw data file.
+        weather_generic: Merged weather data, actual values, and generic forecasts.
+        forecasts (dataframe): Generated predicted values per origin, destination, day, time combination.
+        coefficients (dataframe): Coefficients per i,j,t combination.
+        autocorr_data (dataframe): Modified data for autocorrelation analysis, cached.
+    """
 
     # Default settings for the forecast
     drop_monday = True
@@ -13,11 +28,9 @@ class Forecast:
     intercept = True
     interval = 10
 
-    # Stored values for the lmaos
+    # Stored dataframes for easy access
     raw_data = None
     weather_generic = None
-
-    # Data values
     forecasts = None
     coefficients = None
     autocorr_data = None

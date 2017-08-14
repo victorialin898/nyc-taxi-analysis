@@ -1,3 +1,5 @@
+"""A module for post-forecast analysis, specifically autocorrelation and basic summary statistics."""
+
 import pandas as pd
 import datetime
 

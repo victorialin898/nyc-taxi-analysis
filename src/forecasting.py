@@ -1,8 +1,10 @@
+"""A module for the process of forecast creation."""
+
 import pandas as pd
 import math
 import numpy as np
-from sklearn.linear_model import LinearRegression
 import datetime
+from sklearn.linear_model import LinearRegression
 
 
 # regression function, returns data frame of coefficients, R^2, MSE for each category

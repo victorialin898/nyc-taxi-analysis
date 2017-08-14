@@ -1,3 +1,5 @@
+"""Some example uses of the Forecast class."""
+
 from wrapper import Forecast
 
 print('START')

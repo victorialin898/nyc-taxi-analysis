@@ -1,3 +1,5 @@
+"""A module for pre-forecast data processing."""
+
 import pandas as pd
 
 COLUMNS = ['n_trips', 'avg_duration', 'avg_distance', 'avg_fare', 'avg_speed']
