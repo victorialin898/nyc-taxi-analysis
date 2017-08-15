@@ -8,4 +8,4 @@ Includes a set of tools for pre/post forecast data processing in utils.py, forec
 
 Both are encapsulated in wrapper.py with the Forecast class. All forecast creation/analysis should be done using the Forecast class.
 
-Autocorrelation and variation analysis functionality to be added later on.
+Autocorrelation and variation analysis functionality included in the Forecast class.
