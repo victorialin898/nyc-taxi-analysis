@@ -1,6 +1,6 @@
-# nyc-taxi-analysis
+# nyc-taxi-forecasts
 
-Tools for data analysis on datasets provided by the New York City Taxi & Limousine Commission.
+Tools for creating forecasts and performing analysis on datasets provided by the New York City Taxi & Limousine Commission.
 
 Uses the pandas, np, math, sk-learn, datetime libraries.
 
